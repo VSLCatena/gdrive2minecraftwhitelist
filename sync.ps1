@@ -45,6 +45,6 @@ if(test-path "./virtenv/bin/") { ./virtenv/bin/Activate.ps1 }
 New-Variable -Name API_URL -Value  "https://api.mojang.com/users/profiles/minecraft" -Option ReadOnly -force
 $filepath = join-path "$WorkingDirectory" "whitelist.json"
 copy-item -path "$filepath" -Destination "./whitelist.json.$(get-date -Format 'yyyyMMdd_HHmmss').bak"
-Python3 ./sync.py
+python3 ./sync.py
 $whitelist = Get-WList
 $whitelist | convertto-json | out-file -FilePath $filepath
