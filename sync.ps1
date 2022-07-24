@@ -29,13 +29,15 @@ Param(
 )
     $uri = $API_URL+"/"+$username
     $result = Invoke-RestMethod -Uri $uri -Method get
-    return $result
+    $id = $result.id.Substring(0,8)+"-"+$result.id.Substring(8,4)+"-"+$result.id.Substring(12,4)+"-"+$result.id.Substring(16,4)+"-"+$result.id.Substring(20);
+
+    return $id
 }
 
 Function Get-WList() {
     $List = Get-Content -Path .\sheet.tmp.json -raw | convertfrom-json | where {$_.username -ne ""} | select @{n="name";e={$_.username}},@{n="Goedgekeurd";e={$_.Goedgekeurd -eq "TRUE"}}
     foreach($u in $List) {
-        $u | add-member -MemberType NoteProperty -Name uuid -Value $(Get-MCData -username $u.name ).ID -force
+        $u | add-member -MemberType NoteProperty -Name uuid -Value $(Get-MCData -username $u.name ) -force
     }
     return $list.where({$_.goedgekeurd -eq $true -and $_.uuid -ne $null})  | select uuid,name
 }
