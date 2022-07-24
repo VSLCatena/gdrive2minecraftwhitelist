@@ -29,8 +29,14 @@ Param(
 )
     write-host "$username" -ForegroundColor Magenta
     $uri = $API_URL+"/"+$username
-    start-sleep -milliseconds 1000
-    $result = Invoke-RestMethod -Uri $uri -Method get
+    $i = 0
+    $result = Invoke-RestMethod -Uri $uri -Method get -StatusCodeVariable code
+    while (($code -ne 200 -and $code -ne 204) -and ($i -lt 4)) {
+        $i++
+        start-sleep -milliseconds 1000
+        $result = Invoke-RestMethod -Uri $uri -Method get -StatusCodeVariable code
+    }
+    "$code ($i)" | write-host -ForegroundColor cyan
     if($result.length -gt 0){
         $id = $result.id.Substring(0,8)+"-"+$result.id.Substring(8,4)+"-"+$result.id.Substring(12,4)+"-"+$result.id.Substring(16,4)+"-"+$result.id.Substring(20);
         return $id
