@@ -29,7 +29,7 @@ Param(
 )
     write-host "$username" -ForegroundColor Magenta
     $uri = $API_URL+"/"+$username
-    start-sleep -milliseconds 500
+    start-sleep -milliseconds 1000
     $result = Invoke-RestMethod -Uri $uri -Method get
     if($result.length -gt 0){
         $id = $result.id.Substring(0,8)+"-"+$result.id.Substring(8,4)+"-"+$result.id.Substring(12,4)+"-"+$result.id.Substring(16,4)+"-"+$result.id.Substring(20);
