@@ -14,8 +14,8 @@ if ($Install.IsPresent -eq $true){
     #curl https:/bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py #assume you already have pip
     #chmod +x ./get-pip.py
     #/usr/bin/python3.8 get-pip.py
+    python3 -m venv virtenv
     pip install -r requirements.txt
-    virtualenv ./virtenv
     ./virtenv/Scripts/activate.ps1
     "Edit sync.settings.cfg and get service acc json" | write-host -ForegroundColor magenta
     start-sleep -Seconds 5
