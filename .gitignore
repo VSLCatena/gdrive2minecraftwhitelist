@@ -1,6 +1,14 @@
-client_secrets.json
-backup_job.conf
-backup.log
-sheet.tmp.json
-whitelist.json
+#virtualenv
 virtenv
+
+#credentials & settings
+client_secrets.json
+service.json
+sync.settings.cfg
+
+#temp file
+sheet.tmp.json
+
+#private files
+whitelist.json
+
