@@ -29,9 +29,10 @@ Param(
 )
     $uri = $API_URL+"/"+$username
     $result = Invoke-RestMethod -Uri $uri -Method get
-    $id = $result.id.Substring(0,8)+"-"+$result.id.Substring(8,4)+"-"+$result.id.Substring(12,4)+"-"+$result.id.Substring(16,4)+"-"+$result.id.Substring(20);
-
-    return $id
+    if($result -ne $null){
+        $id = $result.id.Substring(0,8)+"-"+$result.id.Substring(8,4)+"-"+$result.id.Substring(12,4)+"-"+$result.id.Substring(16,4)+"-"+$result.id.Substring(20);
+        return $id
+    }
 }
 
 Function Get-WList() {
