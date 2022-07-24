@@ -1,0 +1,6 @@
+client_secrets.json
+backup_job.conf
+backup.log
+sheet.tmp.json
+whitelist.json
+virtenv
