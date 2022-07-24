@@ -27,6 +27,7 @@ function Get-MCData(){
 Param(
     [string]$username
 )
+    write-host "$username"
     $uri = $API_URL+"/"+$username
     start-sleep -seconds 1
     $result = Invoke-RestMethod -Uri $uri -Method get
