@@ -15,9 +15,9 @@ if ($Install.IsPresent -eq $true){
     #chmod +x ./get-pip.py
     #/usr/bin/python3.8 get-pip.py
     python3 -m venv virtenv
-    pip install -r requirements.txt
     if(test-path "./virtenv/Scripts/") { ./virtenv/Scripts/activate.ps1 } 
     if(test-path "./virtenv/bin/") { ./virtenv/bin/Activate.ps1 }  
+    pip install -r requirements.txt
     "Edit sync.settings.cfg and get service acc json" | write-host -ForegroundColor magenta
     start-sleep -Seconds 5
     exit 0
