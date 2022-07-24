@@ -40,10 +40,11 @@ Function Get-WList() {
     return $list.where({$_.goedgekeurd -eq $true -and $_.uuid -ne $null})  | select uuid,name
 }
 
-& ./virtenv/Scripts/activate.ps1
+if(test-path "./virtenv/Scripts/") { ./virtenv/Scripts/activate.ps1 } 
+if(test-path "./virtenv/bin/") { ./virtenv/bin/Activate.ps1 }  
 New-Variable -Name API_URL -Value  "https://api.mojang.com/users/profiles/minecraft" -Option ReadOnly -force
 $filepath = join-path "$WorkingDirectory" "whitelist.json"
 copy-item -path "$filepath" -Destination "./whitelist.json.$(get-date -Format 'yyyyMMdd_HHmmss').bak"
-Python ./sync.py
+Python3 ./sync.py
 $whitelist = Get-WList
 $whitelist | convertto-json | out-file -FilePath $filepath
