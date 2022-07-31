@@ -2,7 +2,7 @@ Param(
     [switch]$Install,
     [string]$WorkingDirectory = "./"
 )
-
+cd $PSScriptroot
 #
 # Connect to sheets and retrieve file, store as ./sheet.tmp.json
 # parse sheet.tmp.json and retrieve UUID
